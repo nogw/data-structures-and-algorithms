@@ -1,4 +1,8 @@
 pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
+    if nums.is_empty() || target < nums[0] {
+        return 0;
+    };
+
     let mut min = 0;
     let mut max = nums.len() - 1;
 
@@ -7,14 +11,14 @@ pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
 
         if nums[mid] == target {
             return mid as i32;
-        } else if nums[mid] < target {
+        } else if target > nums[mid] {
             min = mid + 1;
         } else {
             max = mid - 1;
         }
     }
 
-    return (max + 1) as i32;
+    return min as i32;
 }
 
 fn main() {
