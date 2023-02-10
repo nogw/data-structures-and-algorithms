@@ -1,6 +1,6 @@
-pub fn maximum_subarray(nums: Vec<i32>) -> i32 {
-    let mut max = 0;
+pub fn max_sub_array(nums: Vec<i32>) -> i32 {
     let mut sum = 0;
+    let mut max = i32::MIN;
 
     for num in 0..nums.len() {
         sum += nums[num];
