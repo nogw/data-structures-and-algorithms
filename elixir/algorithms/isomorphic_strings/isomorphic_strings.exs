@@ -11,11 +11,16 @@ defmodule Solution do
   end
 
   def reverse(list, reversed_head \\ nil, i) do
-    if list.next == nil do
-      {%ListNode{list | next: reversed_head}, i + 1}
+    if list == nil do
+      {reversed_head, i}
     else
-      reverse(list.next, %ListNode{list | next: reversed_head}, i + 1)
+      reversed_list = %ListNode{val: list.val, next: reversed_head}
+      reverse(list.next, reversed_list, i + 1)
     end
+  end
+
+  def check(nil, nil, _, _) do
+    true
   end
 
   def check(list, reversed_head, i, len) when i == len do
