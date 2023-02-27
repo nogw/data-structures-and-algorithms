@@ -1,15 +1,15 @@
 namespace LinkedList {
-  type empty = null;
+  type Empty = null;
 
   type List<T> =
-    | empty
+    | Empty
     | { element: T; next: List<T> };
 
   const empty = null;
 
-  const is_empty = <T>(list: List<T>): list is empty => list === empty;
+  const is_empty = <T>(list: List<T>): list is Empty => list === empty;
 
-  const head = <T>(list: List<T>): T | empty => list?.element || null;
+  const head = <T>(list: List<T>): T | Empty => list?.element || null;
   const tail = <T>(list: List<T>): List<T> => list?.next || null;
 
   const cons = <T>(el: T, list: List<T>): List<T> => ({
@@ -61,7 +61,7 @@ namespace LinkedList {
     return length(list.next, accu + 1);
   };
 
-  const nth = <T>(list: List<T>, at: number, accu = 0): T | empty => {
+  const nth = <T>(list: List<T>, at: number, accu = 0): T | Empty => {
     if (is_empty(list)) {
       return empty;
     }
