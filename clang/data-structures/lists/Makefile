@@ -1,9 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 BUILD_DIR = build
-TARGET = linked_list
-SRCS = $(wildcard *.c)
-OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
+TARGET = doubly_linked_list
+OBJS = $(BUILD_DIR)/$(TARGET).o
 DEPS = $(OBJS:.o=.d)
 
 .PHONY: all clean
@@ -12,10 +11,10 @@ all: build run
 
 build: $(BUILD_DIR)/$(TARGET)
 
-$(BUILD_DIR)/$(TARGET): $(OBJS)
+$(BUILD_DIR)/$(TARGET): $(BUILD_DIR)/$(TARGET).o
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/$(TARGET).o: $(TARGET).c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
